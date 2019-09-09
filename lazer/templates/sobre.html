@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sobre nós{% endblock %}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<p>Esse projeto foi realizado em 1 mês pelos alunos do IFRN - Campus Caicó<br>Analistas: Vinícius Augusto e Natácia Medeiros<br> Designer: Nicolas Lyan<br>Programadores: Adson Matheus e Rony Icaro<br>Gerente: Adson Matheus<br>Orientador/Cliente: Ari Oliveira</p><br>				
+			</div>
+			<div class="col-md-6">
+				<img src="{% static 'api/imgs/logo.png' %}" class="img-fluid" width="50%" height="auto">
+			</div>
+		</div>
+	</div>
+{% endblock %}

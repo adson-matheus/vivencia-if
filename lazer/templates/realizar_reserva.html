@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Reservar{% endblock %}
+{% block content %}
+
+	<br>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<form class="form-post" method="post">
+					<h3 class="display-5">Confirme sua matrícula e o esporte.</h3>
+					{% csrf_token %}
+					<!-- {{ aluno.as_p }} -->
+					<div class="form-group">
+						<label for="aluno">Usuário</label>
+						<input type="text" class="form-control" id="aluno" name="aluno" maxlength="14" readonly value="{{user.username}}">
+					</div>
+					<div class="form-group">
+						<label for="select_esportes">Esporte</label>
+						<!-- pega o valor do select e coloca no input de forma escondida -->
+						<select name="Esporte" id="select_esportes" class="custom-select" onchange='document.getElementById("esporte").value = this.value'autofocus required>
+							<option disabled selected>Selecione um esporte</option>
+							<option value="Futsal">Futsal</option>
+							<option value="Futebol">Futebol</option>
+							<option value="Natação">Natação</option>
+							<option value="Badminton">Badminton</option>
+							<option value="Basquete">Basquete</option>
+							<option value="Vôlei">Vôlei</option>
+						</select>
+						<input type="hidden" id="esporte" name="esporte" value="Futsal">
+					</div>
+					<button id="enviar" type="submit" class="btn btn-success">Estão corretos</button>
+					<a href="{% url 'horarios' %}">
+						<button id="voltar" type="button" class="btn btn-danger">
+							Voltar
+						</button>
+					</a>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

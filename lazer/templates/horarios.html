@@ -1,0 +1,20 @@
+{% extends 'base_esportes.html' %}
+{% block title %}Horários disponíveis{% endblock %}
+{% block content %}
+	{% for p in horarios %}
+	<tr>
+		<td scope="row">{{p.id}}</td>
+		<td>{{p.nome_professor}}</td>
+		<td>{{p.turno}}</td>
+		<td>{{p.horario}}</td>
+		<td>{{p.dia}}</td>
+		{% if p.aluno != None %}
+			<td>Sim, por {{p.aluno}} para praticar {{p.esporte}}</td>
+		{% else %}
+			<td>
+				<a style="text-decoration: none; color: white" href="{% url 'realizar_reserva' p.id %}">Não. <strong>Reserve agora!</strong></a>
+			</td>
+		{% endif %}
+	</tr>
+	{% endfor %}
+{% endblock %}

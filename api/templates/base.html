@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<meta charset="utf-8">
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'api/imgs/logo.png' %}" width="30" height="30"> Vivência IF</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação"><span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'horarios' %}">Quero reservar</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'sobre' %}">Sobre o projeto</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav">
+					{% if user.is_authenticated %}
+						<li id="sair" class="nav-item">
+								<span style="color: white">Logado como {{user.username}}</span>
+								<a href="{% url 'sair' %}" class="btn btn-outline-danger" role="button">Sair</a>
+						</li>
+					{% else %}
+					<li id="login" class="nav-item">
+						<a href="{% url 'login' %}">
+							<button class="btn btn-outline-light" type="button">Login</button>
+						</a>
+					</li>
+					{% endif %}
+			    </ul>
+			</div>
+		</nav>
+	</header>
+
+	<main class="flex-shrink-0" role="main" style="padding: 40px 0px 0px 0px">
+	
+	{% block content %}
+	{% endblock %}
+	</main>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
