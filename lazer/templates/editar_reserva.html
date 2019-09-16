@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Editar horário{% endblock %}
+{% block content %}
+	<form class="form-post" method="post">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4">
+					{% csrf_token %}
+					{{ editar.as_p }}
+					<button type="submit" class="btn btn-lg btn-success">OK</button>
+					<a href="{% url 'horarios' %}">
+						<button id="voltar" type="button" class="btn btn-lg btn-danger">Voltar</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</form>
+{% endblock %}

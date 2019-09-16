@@ -3,8 +3,7 @@
 {% block content %}
 	{% for p in horarios %}
 	<tr>
-		<td scope="row">{{p.id}}</td>
-		<td>{{p.nome_professor}}</td>
+		<td scope="row">{{p.nome_professor}}</td>
 		<td>{{p.turno}}</td>
 		<td>{{p.horario}}</td>
 		<td>{{p.dia}}</td>
@@ -12,8 +11,20 @@
 			<td>Sim, por {{p.aluno}} para praticar {{p.esporte}}</td>
 		{% else %}
 			<td>
+				{% if not user.is_superuser %}
 				<a style="text-decoration: none; color: white" href="{% url 'realizar_reserva' p.id %}">Não. <strong>Reserve agora!</strong></a>
+				{% else %}
+				<span>Não.</span>
+				{% endif %}
 			</td>
+		{% endif %}
+		{% if user.is_superuser %}
+		<td>
+			<a style="text-decoration: none; color: white" href="{% url 'editar_reserva' p.id %}"><i class="fas fa-edit"></i></a>
+		</td>
+		<td>
+			<a style="text-decoration: none; color: white" href="{% url 'excluir_reserva' p.id %}"><i class="fas fa-trash"></i></a>
+		</td>
 		{% endif %}
 	</tr>
 	{% endfor %}

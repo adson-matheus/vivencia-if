@@ -2,11 +2,13 @@
 {% load static %}
 {% block title %}Vivência IFRN-CA{% endblock %}
 {% block content %}
+
+{% if not user.is_superuser %}
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4">
 				<img src="{% static 'api/imgs/logo.png' %}" class="img-fluid">
-			</div>			
+			</div>
 			<div class="col-sm-8">
 				<h4 class="text-justify">
 					A prática de esportes beneficia grandiosamente as pessoas e até mesmo a sociedade, pois reduz a probabilidade de aparecimento de doenças, contribui para a formação física e psíquica além de desenvolver e melhorar tais formações. Na adolescência, as pessoas são influenciadas pelo consumismo, problemas psicológicos, hábitos prejudiciais e outros que também influenciam as demais faixas etárias, gerando conflitos internos que desviam valores e aprendizagens antes obtidos. É neste processo que o esporte mostra sua grande contribuição à sociedade. <br>No IFRN - Caicó há a disponibilidade de diversos esportes para serem praticados. <strong>Para isso, use nosso sistema de reserva Vivência IF para garantir o seu horário para a prática de esportes no campus.</strong>
@@ -14,5 +16,16 @@
 			</div>
 		</div>
 	</div>
-
+{% else %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-2">
+				<img src="{% static 'api/imgs/logo.png' %}" class="img-fluid">
+			</div>
+			<div class="col-sm-10">
+				<h4 class="mt-5">Área do administrador. Cadastre novos horários ou atualize.</h4>
+			</div>
+		</div>
+	</div>
+{% endif %}
 {% endblock %}

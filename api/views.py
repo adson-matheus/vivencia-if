@@ -21,7 +21,7 @@ def logar(request):
 		try:
 			requisicao = requests.post(suapUrl, data={'username': matricula, 'password': senha})
 		except requests.exceptions.ConnectionError:
-			return render(request, 'user/login.html', {'alerta2': 'Erro'})
+			return render(request, 'login.html', {'alerta2': 'Erro'})
 
 		if 'token' in requisicao.text:
 

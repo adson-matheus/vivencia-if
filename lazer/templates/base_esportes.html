@@ -7,6 +7,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 </head>
 <body>
 	<header>
@@ -18,8 +20,18 @@
 			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'horarios' %}">Quero reservar</a>
+						{% if not user.is_superuser %}
+							<a class="nav-link" href="{% url 'horarios' %}">Quero reservar</a>
+						{% else %}
+							<a class="nav-link" href="{% url 'novo_horario' %}">Cadastrar novo horário</a>
+						{% endif %}
 					</li>
+					{% if user.is_superuser %}
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'horarios' %}">Horários</a>
+					</li>
+					{% endif %}
+					
 					<li class="nav-item">
 						<a class="nav-link" href="{% url 'sobre' %}">Sobre o projeto</a>
 					</li>
@@ -51,12 +63,15 @@
 						<caption>Horários novos todas as semanas.</caption>
 						<thead>
 							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Professor</th>
+								<th scope="col">Professor <i class="fas fa-chalkboard-teacher"></i></th>
 								<th scope="col">Turno</th>
 								<th scope="col">Horário</th>
 								<th scope="col">Dia</th>
 								<th scope="col">Reservado?</th>
+								{% if user.is_superuser %}
+								<th scope="col">Editar</th>
+								<th scope="col">Excluir</th>
+								{% endif %}
 							</tr>
 						</thead>
 						<tbody>
