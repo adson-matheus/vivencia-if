@@ -1,4 +1,4 @@
-# vivencia-if-att
+# vivencia-if
 Projeto do último ano do Curso Técnico em Informática da disciplina Engenharia de Software.
 
 Criação de uma plataforma para realizar reservas de horários da área de lazer do campus.
